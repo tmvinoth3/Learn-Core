@@ -1,0 +1,24 @@
+@model List<Employee>;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="card-deck">
+    @foreach (var Employee in Model)
+    {
+        <div class="card col-md-3">
+            <div class="card-header">
+                @Employee.Name
+            </div>
+            <img class="card-img-top" src="~/images/profile.png" asp-append-version/>
+            <div class="card-footer">
+                @* @Html.ActionLink("View", "Details", "Home", new {id = Employee.Id}) *@
+                @* <a href="@(Url.Action("details", "home", new{id = Employee.Id}))" class="btn btn-primary">View</a> *@
+                <a class="btn btn-primary m-1" asp-controller="Home" asp-action="Details" asp-route-id="@Employee.Id">View</a>
+                <a href="#" class="btn btn-primary m-1">Edit</a>
+                <a href="#" class="btn btn-danger m-1">Delete</a>
+            </div>
+        </div>
+    }
+</div>

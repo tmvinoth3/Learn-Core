@@ -1,0 +1,27 @@
+@model HomeDetailsViewModel;
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<div class="card-deck">
+    <div class="card col-md-3">
+        <div class="card-header">
+            @Model.employee.Name
+        </div>
+        <div class="card-body">
+            <img class="card-img-top" src="~/images/profile.png" asp-append-version="true" />     
+            <h5>Email: @Model.employee.Email</h5>
+            <h5>Department: @Model.employee.Department</h5>
+        </div>
+
+        <div class="card-footer">            
+            <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Back</a>
+            <a href="#" class="btn btn-primary">Edit</a>
+            <a href="#" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+</div>
+    
+    @section Scripts{
+        <script src="~/js/CustomScript.js"></script>
+    }
