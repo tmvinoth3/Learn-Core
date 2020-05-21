@@ -8,7 +8,11 @@ namespace web_hello.Models
         {
             
         }
-
         public DbSet<Employee> Employees { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Seed(); //Extension method
+        }
     }
 }
