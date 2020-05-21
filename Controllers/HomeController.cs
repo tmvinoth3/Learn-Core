@@ -58,7 +58,10 @@ namespace web_hello.Controllers
                     string uploadFolder = Path.Combine(hostEnv.WebRootPath, "images");
                     uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Image.FileName;
                     string filePath = Path.Combine(uploadFolder, uniqueFileName);
-                    model.Image.CopyTo(new FileStream(filePath, FileMode.Create));
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        model.Image.CopyTo(stream);
+                    }                         
                 }
 
                 Employee newEmployee = new Employee{
@@ -79,5 +82,54 @@ namespace web_hello.Controllers
             Employee delEmp = repository.Delete(Id);
             return RedirectToAction("index");                
         }
+
+        public ActionResult Edit(int Id)
+        {
+            Employee emp = repository.GetEmployee(Id);
+            EmployeeEditViewModel empEditModel = new EmployeeEditViewModel{
+                Id = emp.Id,
+                Name = emp.Name,
+                Email = emp.Email,
+                Department = emp.Department,
+                ExistingImagePath = emp.ImagePath
+            };
+            return View(empEditModel);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(EmployeeEditViewModel model)
+        {
+            if(ModelState.IsValid)
+            {
+                string uniqueFileName = string.Empty; //To avoid same file name
+                if(model.Image != null)
+                {
+                    if(model.ExistingImagePath != null)
+                    {
+                        string existingImagePath = Path.Combine(hostEnv.WebRootPath, "images", model.ExistingImagePath);
+                        System.IO.File.Delete(existingImagePath);
+                    }
+                    string uploadFolder = Path.Combine(hostEnv.WebRootPath, "images");
+                    uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Image.FileName;
+                    string filePath = Path.Combine(uploadFolder, uniqueFileName);
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        model.Image.CopyTo(stream);
+                    }                    
+                }
+
+                Employee newEmployee = new Employee{
+                    Id = model.Id,
+                    Name = model.Name,
+                    Email = model.Email,
+                    Department = model.Department,
+                    ImagePath = uniqueFileName
+                };
+
+                newEmployee = repository.Update(newEmployee);
+                return RedirectToAction("details", new{id = newEmployee.Id});                
+            }
+            return View();
+        }         
     }
 }

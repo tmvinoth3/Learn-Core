@@ -19,7 +19,7 @@
                         @* @Html.ActionLink("View", "Details", "Home", new {id = Employee.Id}) *@
                         @* <a href="@(Url.Action("details", "home", new{id = Employee.Id}))" class="btn btn-primary">View</a> *@
                         <a class="btn btn-primary m-1" asp-controller="Home" asp-action="Details" asp-route-id="@Employee.Id">View</a>
-                        <a href="#" class="btn btn-primary m-1">Edit</a>
+                        <a asp-controller="home" asp-action="edit" asp-route-id="@Employee.Id" class="btn btn-primary m-1">Edit</a>
                         <a asp-controller="home" asp-action="delete" asp-route-id="@Employee.Id" class="btn btn-danger m-1">Delete</a>
                     </div>
                 </div>                

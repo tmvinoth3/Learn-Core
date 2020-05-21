@@ -83,7 +83,7 @@ namespace web_hello
                 //endpoints.MapControllers();
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "thinkbig/{controller=Home}/{action=Index}/{Id?}"
+                    pattern: "{controller=Home}/{action=Index}/{Id?}"
                 );
                 // endpoints.MapGet("/", async context =>
                 // {

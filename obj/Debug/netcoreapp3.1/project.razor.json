@@ -20536,6 +20536,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Vinoth\\web-hello\\Views\\Home\\Edit.cshtml",
+      "TargetPath": "Views\\Home\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Vinoth\\web-hello\\Views\\Home\\Details.cshtml",
       "TargetPath": "Views\\Home\\Details.cshtml",
       "FileKind": "mvc"

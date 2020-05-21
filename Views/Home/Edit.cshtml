@@ -1,0 +1,71 @@
+@model EmployeeEditViewModel
+
+@inject IEmployeeRepository _empRepository
+
+@{
+    ViewBag.Title = "Edit";
+    var imagePath = "../../images/" + @Model.ExistingImagePath;
+}
+
+<form enctype="multipart/form-data" asp-controller="home" asp-action="edit" method="post">
+    <input type="hidden" asp-for="Id">
+    <div class="form-group row">
+        <label asp-for="Name" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-3">
+            <input type="text" asp-for="Name" class="form-control">    
+            <span asp-validation-for="Name" class="text-danger"></span>    
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Email" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-3">
+            <input type="text" asp-for="Email" class="form-control">   
+            <span asp-validation-for="Email" class="text-danger"></span>                     
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Department" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-3">
+            <select asp-for="Department" asp-items="Html.GetEnumSelectList<Dept>()" class="form-control">
+                <option value="">--Select--</option>
+            </select>
+            <span asp-validation-for="Department" class="text-danger"></span>                     
+        </div>
+    </div> 
+    <div class="form-group row">
+        <label asp-for="Image" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-3">
+            <div class="custom-file">
+                <input asp-for="Image" class="form-control custome-file-input">   
+                <label for="Image" class="custom-file-label">Choose file</label>                    
+            </div>                 
+        </div>
+    </div>  
+    <div class="form-group row">
+        <div class="col-sm-3">
+            <img src="@imagePath" alt="">
+        </div>
+    </div>
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div>
+        <button class="btn btn-primary">Update</button>
+    </div>   
+</form>
+
+<div>
+    Number Of Employees: @_empRepository.GetAllEmployees().Count()
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function(){
+            $("#Image").change(function(){
+                var SelFile = $("#Image").val().split("\\").pop();
+                $(".custom-file-label").text(SelFile);                
+            });
+        });
+    </script>
+}

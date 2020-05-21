@@ -18,8 +18,8 @@
 
         <div class="card-footer">            
             <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Back</a>
-            <a href="#" class="btn btn-primary">Edit</a>
-            <a href="#" class="btn btn-danger">Delete</a>
+            <a asp-controller="home" asp-action="edit" asp-route-id="@Model.employee.Id" class="btn btn-primary">Edit</a>
+            <a asp-controller="home" asp-action="delete" asp-route-id="@Model.employee.Id" class="btn btn-danger">Delete</a>
         </div>
     </div>
 </div>
