@@ -1,0 +1,43 @@
+@model RegisterViewModel
+
+@{
+    ViewBag.Title = "Registration";
+}
+
+<form enctype="multipart/form-data" asp-controller="acccount" asp-action="register" method="post">
+    <div class="form-group row">
+        <label asp-for="Email" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-3">
+            <input type="text" asp-for="Email" class="form-control">   
+            <span asp-validation-for="Email" class="text-danger"></span>                     
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Password" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-3">
+            <input type="text" asp-for="Password" class="form-control">    
+            <span asp-validation-for="Password" class="text-danger"></span>    
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="ConfirmPassword" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-3">
+            <input type="text" asp-for="ConfirmPassword" class="form-control">    
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>    
+        </div>
+    </div>
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div>
+        <button class="btn btn-primary">Register</button>
+    </div>   
+</form>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function(){
+
+        });
+    </script>
+}

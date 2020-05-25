@@ -20526,8 +20526,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Vinoth\\web-hello\\Views\\Account\\Register.cshtml",
+      "TargetPath": "Views\\Account\\Register.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Vinoth\\web-hello\\Views\\Home\\Create.cshtml",
       "TargetPath": "Views\\Home\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Vinoth\\web-hello\\Views\\Account\\Login.cshtml",
+      "TargetPath": "Views\\Account\\Login.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -20541,8 +20551,23 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Vinoth\\web-hello\\Views\\Shared\\NotFound.cshtml",
+      "TargetPath": "Views\\Shared\\NotFound.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Vinoth\\web-hello\\Views\\Home\\NotFound.cshtml",
+      "TargetPath": "Views\\Home\\NotFound.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Vinoth\\web-hello\\Views\\Home\\Details.cshtml",
       "TargetPath": "Views\\Home\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Vinoth\\web-hello\\Views\\Shared\\Error.cshtml",
+      "TargetPath": "Views\\Shared\\Error.cshtml",
       "FileKind": "mvc"
     },
     {

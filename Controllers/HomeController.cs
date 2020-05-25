@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using web_hello.Models;
 using web_hello.ViewModels;
 
@@ -13,24 +14,37 @@ namespace web_hello.Controllers
     {
         private IEmployeeRepository repository;
         private IWebHostEnvironment hostEnv;
+        private ILogger logger;
 
-        public HomeController(IEmployeeRepository repo, IWebHostEnvironment hostingEnvironment)
+        public HomeController(IEmployeeRepository repo,IWebHostEnvironment hostingEnvironment,
+                                ILogger<HomeController> logger)
         {
             repository = repo;
             hostEnv = hostingEnvironment;
+            this.logger = logger;
         }
 
         [Route("~/")]
         public ActionResult Index()
         {
+            logger.LogTrace("Index begin");
             List<Employee> EmpList = repository.GetAllEmployees();
-            return View(EmpList);
+            logger.LogTrace("Index End");
+            return View(EmpList);            
         }
 
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
+            //throw new Exception("error");
+            logger.LogTrace("Details begin");
             HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel();
-            Employee empModel = repository.GetEmployee(id??1);
+            //Employee empModel = repository.GetEmployee(id??1);
+            Employee empModel = repository.GetEmployee(id);
+            if(empModel == null){
+                Response.StatusCode = 404;
+                return View("NotFound", id);
+
+            }
             homeDetailsViewModel.employee = empModel;
             homeDetailsViewModel.Title = "Employee Details";
 
